@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Pig Game</title>
+  </head>
+  <body>
+    <!-- Instructions Modal -->
+    <div class="modal">
+      <button class="instructions">
+        ورينى تعليمات اللعبة
+      </button>
+      <div class="instructions-list hidden">
+        <ul>
+          <li><p><span>1</span> ⚀ اللاعب الأول (اللي دوره شغال) يبدأ بالضغط على زرار "رمي النرد"</p></li>
+          <li><p><span>2</span> ➕ الرقم اللي يظهر من النرد بيُضاف مباشر لـ "النقاط الحالية" كل مرة ترمي فيها</p></li>
+          <li><p><span>3</span> 💥 إذا ظهر رقم <strong>1</strong>، تخسر دورك والدور يتحول للخصم تلقائيًا!</p></li>
+          <li><p><span>4</span> 🛡️ لو ضغطت على "ثبت"، النقاط الحالية بتنتقل لـ "إجمالي النقاط" وتكون آمنة، ويتحول الدور للخصم</p></li>
+          <li><p><span>5</span> 🏆 أول واحد يصل إلى <strong>100 نقطة</strong> بيكون الفائز باللعبة!</p></li>
+          <li><p><span>6</span> 😈 يظهر حكم عشوائي للـ <strong>الخاسر</strong> ويجب تنفيذه!</p></li>        </ul>
+        <button class="return-game">🎮 رجوع للعب</button>
+      </div>
+    </div>
+    
+    <!-- Penalties Modal -->
+    <div class="pnealties-modal hidden">
+      <h2 class="penalty-header">الحكم هو</h2>
+      <p class="penalty">الحكم</p>
+      <button class="penalties-return">🎮 رجوع للعب</button>
+      <button class="new-penalty">حكم تانى🔄</button>
+    </div>
+
+
+    <div class="names-inputs">
+      <h1>اختر اسماء اللاعبين</h1>
+      <input type="text" class="name-1" placeholder="اللاعب الاول">
+      <input type="text" class="name-2" placeholder="اللاعب الثانى">
+      <button class="add-players">➕ ضيف</button>
+    </div>
+
+    <!-- Main Game Container -->
+    <main>
+      <section class="player player--0 player--active">
+        <h2 class="name" id="name--0">اللاعب الأول</h2>
+        <p class="score" id="score--0">43</p>
+        <div class="current">
+          <p class="current-label">النقاط الحالية</p>
+          <p class="current-score" id="current--0">0</p>
+        </div>
+      </section>
+      <section class="player player--1">
+        <h2 class="name" id="name--1">اللاعب الثاني</h2>
+        <p class="score" id="score--1">24</p>
+        <div class="current">
+          <p class="current-label">النقاط الحالية</p>
+          <p class="current-score" id="current--1">0</p>
+        </div>
+      </section>
+    
+      <img src="images/dice-1.png" alt="نرد اللعب" class="dice" />
+      <button class="btn btn--new">🔄 لعبة جديدة</button>
+      <button class="btn btn--roll">🎲 رمي النرد</button>
+      <button class="btn btn--hold">📥 ثبت النتيجة</button>
+    </main>
+    <div class="overlay hidden"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
