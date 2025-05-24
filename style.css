@@ -305,3 +305,12 @@ ul li p span {
   color: #fff;
   font-size: 20px;
 }
+
+.developed{
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  color: #fff;
+}
