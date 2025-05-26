@@ -1,6 +1,6 @@
 'use strict';
 
-// Selecting Elements From HTML
+// تعريف العناصر من الـ HTML
 const score0 = document.getElementById('score--0');
 const score1 = document.getElementById('score--1');
 const name0 = document.getElementById('name--0');
@@ -24,7 +24,7 @@ const newPenalty = document.querySelector('.new-penalty');
 const addPlayers = document.querySelector('.add-players')
 const name1Input = document.querySelector('.name-1')
 const name2Input = document.querySelector('.name-2')
-// Starting Conditions
+// إعادة تعيين القيم الأولية
 score0.textContent = 0;
 score1.textContent = 0;
 let scores = [0,0];
@@ -49,7 +49,7 @@ function getRandomPenalty() {
 }
 
 
-// Show Modal
+// الفانكشن المسؤلة عن اظهار المودال
 function showModal(){
     modal.classList.remove('hidden');
     overlay.classList.remove('hidden');
@@ -65,20 +65,19 @@ function getNewPenalty(){
     penalty.textContent = getRandomPenalty();
 }
 
-
+// الفانكشن المسؤلة عن اغلاق المودال
 function closePenaltiesModal(){
     penaltiesModal.classList.add('hidden');
     overlay.classList.add('hidden');
 }
 
-// CLose Modal
 function closeModal(){
     modal.classList.add('hidden');
     overlay.classList.add('hidden');
 }
 
 
-// Switch Player Functionallity
+// الفانكشن المسؤلة عن تبديل اللاعبين
 function switchPlayer(){
     if(Player0.classList.contains('player--active')){
         activePlayer = 1;
@@ -92,41 +91,54 @@ function switchPlayer(){
     }
 }
 
-// Rolling Dice Function
+// تعريف عنصر الصوت
+const diceSound = new Audio('dice-roll.mp3');
+
+// الفانكشن المسؤلة عن دوران النرد
 function rollDice(){
     if(playing){
-     // Generate Random Number Between 1 and 6
-    const diceNumber = Math.floor(Math.random() * 6) + 1;
-    name1Input.value = '';
-    name2Input.value = '';
-    // Display Dice
-    dice.classList.remove('hidden');
-    dice.src = `images/dice-${diceNumber}.png`
-    // Check if the rolled number is 1
-    if(diceNumber === 1){
-        currentscore = 0;
-        document.getElementById(`current--${activePlayer}`).textContent = currentscore;
-        switchPlayer();
-    }else{
-        currentscore += diceNumber;
-        document.getElementById(`current--${activePlayer}`).textContent = currentscore;
-    } 
+     // تشغيل صوت رمي النرد
+     diceSound.currentTime = 0;
+     diceSound.play();
+     // توليد رقم عشوائى بين 1 و 6
+     const diceNumber = Math.floor(Math.random() * 6) + 1;
+     name1Input.value = '';
+     name2Input.value = '';
+     // ظهور النرد
+     dice.classList.remove('hidden');
+     dice.src = `images/dice-${diceNumber}.png`
+     // التحقق اذا كان الرقم يساوى واحد او لا 
+     if(diceNumber === 1){
+         currentscore = 0;
+         document.getElementById(`current--${activePlayer}`).textContent = currentscore;
+         switchPlayer();
+     }else{
+         currentscore += diceNumber;
+         document.getElementById(`current--${activePlayer}`).textContent = currentscore;
+     } 
     }
 }
 
 
-// Hold Score Functionality
+// ساوند الاضافة
+const holdSound = new Audio('hold-sound.mp3');
+const winSound = new Audio('fanfare-sound.mp3');
+// الفانكشن المسؤلة عن حفظ النتيجة
 function holdScore(){
     if(playing){
-    // Add Score For Current Player To Total Score
+    // إضافة النتيجة الحالية إلى النتيجة الإجمالية
     scores[activePlayer] += currentscore;
     document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
-
+    holdSound.currentTime = 0;
+    holdSound.play();
     if(scores[activePlayer] >= 100){
         document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
         document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
         dice.classList.add('hidden')
         playing = false;
+        winSound.currentTime = 0;
+        winSound.play();
+        document.getElementById(`current--${activePlayer}`).textContent = 0;
         showPenaltiesModal();
     }
     else{
@@ -137,7 +149,7 @@ function holdScore(){
     }
 }
 
-// reset game functionality
+// الفانكشن المسؤلة عن اعادة تعيين اللعبة
 function resetGame(){
     score0.textContent = 0;
     score1.textContent = 0;
@@ -163,7 +175,7 @@ function addPlayersFunction(){
     }
 }
 
-// Buttons Functionality
+// اضافة الأحداث على الأزرار
 rollButton.addEventListener('click' , rollDice);
 holdButton.addEventListener('click' , holdScore);
 newGameButton.addEventListener('click' , resetGame);
