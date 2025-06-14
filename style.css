@@ -33,10 +33,9 @@ main {
   backdrop-filter: blur(200px);
   filter: blur();
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.25);
-  border-radius: 9px;
+  border-radius: 10px;
   overflow: hidden;
   display: flex;
-  margin-top: 200px;
 }
 
 .player {
@@ -116,11 +115,9 @@ main {
   cursor: pointer;
   font-weight: 400;
   transition: all 0.2s;
-
   background-color: white;
   background-color: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(10px);
-
   padding: 0.7rem 2.5rem;
   border-radius: 50rem;
   box-shadow: 0 1.75rem 3.5rem rgba(0, 0, 0, 0.1);
@@ -231,6 +228,11 @@ main {
   cursor: pointer;
 }
 
+.add-players{
+  margin-top: 20px;
+  width: 80%;
+}
+
 
 .overlay {
   position: absolute;
@@ -289,10 +291,15 @@ ul li p span {
 .names-inputs{
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  position: absolute;
-  top: 100px;
-  left: 43%;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 15px;
+  background-color: #fff;
+  width: 450px;
+  height: 450px;
+  border-radius: 10px;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.25);
 }
 
 .names-inputs input{
@@ -300,10 +307,13 @@ ul li p span {
   outline: none;
   border-radius: 10px;
   padding: 10px 20px;
+  border: 2px solid #ccc;
+  width: 80%;
+  padding: 15px;
 }
 
 .names-inputs{
-  color: #fff;
+  color: #2f2f2f;
   font-size: 20px;
 }
 
