@@ -21,9 +21,13 @@ const overlay = document.querySelector('.overlay');
 const penaltiesModal = document.querySelector('.pnealties-modal');
 const penalty = document.querySelector('.penalty');
 const newPenalty = document.querySelector('.new-penalty');
-const addPlayers = document.querySelector('.add-players')
-const name1Input = document.querySelector('.name-1')
-const name2Input = document.querySelector('.name-2')
+const addPlayers = document.querySelector('.add-players');
+const name1Input = document.querySelector('.name-1');
+const name2Input = document.querySelector('.name-2');
+const mainContainerGame = document.querySelector('.main-game')
+const nameInputsContainer = document.querySelector('.names-inputs')
+
+
 // إعادة تعيين القيم الأولية
 score0.textContent = 0;
 score1.textContent = 0;
@@ -40,7 +44,7 @@ fetch('penalties.json')
   .then(data => {
     penalties = data;
   })
-  .catch(error => console.error('مش حملت الأحكام:', error));
+  .catch(error => console.error('حدث خطأ أثناء تحميل الأحكام', error));
 
 function getRandomPenalty() {
   if (penalties.length === 0) return "مفيش أحكام متاحة!";
@@ -120,7 +124,7 @@ function rollDice(){
 }
 
 
-// ساوند الاضافة
+//  ساوند الفوز و ساوند الاضافة
 const holdSound = new Audio('hold-sound.mp3');
 const winSound = new Audio('fanfare-sound.mp3');
 // الفانكشن المسؤلة عن حفظ النتيجة
@@ -166,12 +170,15 @@ function resetGame(){
     playing = true;
 }
 
+// الفانكشن المسؤلة عن اضافة أسماء اللاعبين
 function addPlayersFunction(){
     if(!name1Input.value || !name2Input.value){
         alert("Please Enter Names First!")
     }else{
-    name0.textContent = name1Input.value;
+    name0.textContent = name1Input.value;  
     name1.textContent = name2Input.value;
+    nameInputsContainer.classList.add('hidden');
+    mainContainerGame.classList.remove('hidden')
     }
 }
 
@@ -179,9 +186,9 @@ function addPlayersFunction(){
 rollButton.addEventListener('click' , rollDice);
 holdButton.addEventListener('click' , holdScore);
 newGameButton.addEventListener('click' , resetGame);
-showInstructions.addEventListener('click' , showModal)
-closeInstructions.addEventListener('click' , closeModal)
-overlay.addEventListener('click' , closeModal)
-closePenalty.addEventListener('click' , closePenaltiesModal)
-newPenalty.addEventListener('click' , getNewPenalty)
-addPlayers.addEventListener('click' , addPlayersFunction)
+showInstructions.addEventListener('click' , showModal);
+closeInstructions.addEventListener('click' , closeModal);
+overlay.addEventListener('click' , closeModal);
+closePenalty.addEventListener('click' , closePenaltiesModal);
+newPenalty.addEventListener('click' , getNewPenalty);
+addPlayers.addEventListener('click' , addPlayersFunction);
